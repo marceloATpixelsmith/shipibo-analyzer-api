@@ -1,42 +1,31 @@
 # Use official Ubuntu base image
 FROM ubuntu:22.04
 
-# Install system dependencies including build tools and foma dependencies
+# Install system dependencies and foma package from Ubuntu repo
 RUN apt-get update && apt-get install -y \
+    foma \
     build-essential \
     python3 \
     python3-pip \
     git \
     curl \
     flex \
-    bison \
-    autoconf \
-    automake \
-    libtool
-
-# Clone and install foma from source with proper bootstrapping
-RUN git clone https://github.com/mhulden/foma.git /foma && \
-    cd /foma && \
-    autoreconf -i && \
-    ./configure && \
-    make && \
-    make install && \
-    cd / && rm -rf /foma
+    bison
 
 # Set working directory inside container
 WORKDIR /app
 
-# Copy your application files into the container
+# Copy all project files into container
 COPY . .
 
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Compile the analyzer using your build.sh script
+# Run your build script to compile analyzer
 RUN bash build.sh
 
-# Expose port 5000 for Flask app
+# Expose Flask default port
 EXPOSE 5000
 
-# Command to run your Flask app
+# Command to run Flask app
 CMD ["python3", "app.py"]
