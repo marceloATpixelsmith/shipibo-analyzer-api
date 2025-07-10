@@ -1,5 +1,5 @@
 
-app = "your-app-name"  # Replace with your actual Fly.io app name
+app = "shipibo-analyzer-api"  # Replace with your actual Fly.io app name
 
 [build]
   dockerfile = "Dockerfile"
