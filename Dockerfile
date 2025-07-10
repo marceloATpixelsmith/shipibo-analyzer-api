@@ -21,8 +21,8 @@ COPY . .
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Compile the analyzer file (adjust name as needed)
-RUN foma -f morph-shk.foma
+# Run your build script to compile analyzer
+RUN bash build.sh
 
 # Expose Flask default port
 EXPOSE 5000
