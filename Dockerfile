@@ -14,10 +14,10 @@ RUN apt-get update && apt-get install -y \
     automake \
     libtool
 
-# Clone and install foma from source
+# Clone and install foma from source with proper bootstrapping
 RUN git clone https://github.com/mhulden/foma.git /foma && \
     cd /foma && \
-    ./autogen.sh && \
+    autoreconf -i && \
     ./configure && \
     make && \
     make install && \
