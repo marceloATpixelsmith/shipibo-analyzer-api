@@ -21,7 +21,7 @@ COPY . .
 # Install Python dependencies
 RUN pip3 install --no-cache-dir -r requirements.txt
 
-# Run your build script to compile analyzer
+# Run the build script to compile analyzer
 RUN bash build.sh
 
 # Expose Flask default port
