@@ -4,6 +4,8 @@
 # Concatenate all Foma source files
 cat foma_files/*.foma > combined.foma
 
-# Compile to binary Foma stack
-echo 'read combined.foma' | foma -f - > /dev/null
-echo 'save stack morph-shk.fomabin' | foma -f - > /dev/null
+# Compile combined.foma to binary stack morph-shk.fomabin
+foma -f combined.foma << EOF
+save stack morph-shk.fomabin
+quit
+EOF
