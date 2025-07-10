@@ -3,7 +3,7 @@ import subprocess
 import os  # Add this import at the top
 
 app = Flask(__name__)
-FOMA_FILE = 'morph-shk.fomabin'  # Use compiled binary
+FOMA_FILE = 'morph_shk.fst'  # Use the actual compiled binary file you have
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
