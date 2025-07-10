@@ -1,5 +1,6 @@
 from flask import Flask, request, jsonify
 import subprocess
+import os  # Add this import at the top
 
 app = Flask(__name__)
 FOMA_FILE = 'morph-shk.fomabin'  # Use compiled binary
@@ -23,6 +24,12 @@ def analyze():
         })
     except Exception as e:
         return jsonify({'error': str(e)}), 500
+
+# Add this debug endpoint here
+@app.route('/debug-files', methods=['GET'])
+def debug_files():
+    files = os.listdir('.')  # list files in current working directory
+    return jsonify({'files': files})
 
 if __name__ == '__main__':
     app.run(host='0.0.0.0', port=5000)
