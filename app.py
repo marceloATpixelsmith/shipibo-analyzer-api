@@ -2,7 +2,7 @@ from flask import Flask, request, jsonify
 import subprocess
 
 app = Flask(__name__)
-FOMA_FILE = 'morph-shk.foma'
+FOMA_FILE = 'morph-shk.fst'  # Use compiled analyzer binary
 
 @app.route('/analyze', methods=['POST'])
 def analyze():
